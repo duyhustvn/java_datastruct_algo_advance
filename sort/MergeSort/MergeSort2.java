@@ -117,7 +117,7 @@ public class MergeSort2 {
         mergeSort.mergeSort(arr);
         long endTime = System.nanoTime();
         double estimateTime = (endTime - startTime) / 100000000.0;
-        mergeSort.printArray(arr);
+        // mergeSort.printArray(arr);
         // mergeSort.countLine(file);
         System.out.println("Number of data: " + arr.size());
         System.out.println("Mersort time: " + estimateTime);
