@@ -18,7 +18,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
         if (root == null) {
             root = newNode;
         } else {
-            int comp = data.compareTo((E)node.getData());
+            int comp = data.compareTo((E) node.getData());
             if (comp > 0 && node.getRightNode() != null) {
                 insert(data, node.getRightNode());
             } else if (comp < 0 && node.getLeftNode() != null) {
@@ -40,5 +40,26 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
         System.out.print(node.getData() + " ");
         preorderTraversal(node.getLeftNode());
         preorderTraversal(node.getRightNode());
+    }
+
+    public TreeNode findByData(E data, TreeNode node) {
+        TreeNode findedNode = new TreeNode<E>(null);
+
+        int comp = data.compareTo((E) node.getData());
+        if (node != null) {
+            if (comp == 0) {
+                findedNode = node;
+            } else if (comp < 0 && node.getLeftNode() != null) {
+                return findByData(data, node.getLeftNode());
+            } else if (comp > 0 && node.getRightNode() != null) {
+                return findByData(data, node.getRightNode());
+            } else if ((comp < 0 && node.getLeftNode() == null) || (comp > 0 && node.getRightNode() == null)) {
+                findedNode = null;
+            }
+
+        } else {
+            findedNode = null;
+        }
+        return findedNode;
     }
 }

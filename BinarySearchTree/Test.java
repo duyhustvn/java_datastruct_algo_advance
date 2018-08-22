@@ -8,6 +8,19 @@ public class Test {
         binarySearchTree.insert(10, binarySearchTree.getRootNode());
         binarySearchTree.insert(5, binarySearchTree.getRootNode());
         
+        // preorder travel
         binarySearchTree.preorderTraversal(binarySearchTree.getRootNode());
+
+        // find 
+        System.out.println("");
+        TreeNode findedNode = binarySearchTree.findByData(7, binarySearchTree.getRootNode());
+        System.out.println(findedNode.getData());
+        if (findedNode.getRightNode() != null)
+            System.out.println("Right children: " + findedNode.getRightNode().getData());
+
+        if (findedNode.getLeftNode() != null)
+            System.out.println("Left children: " + findedNode.getLeftNode().getData());
+
+        System.out.println("Root: " + binarySearchTree.getRootNode().getData());
     }
 }
