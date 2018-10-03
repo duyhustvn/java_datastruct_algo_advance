@@ -1,13 +1,23 @@
+package org.selflearning.graph;
+
 import java.util.List;
 import java.util.ArrayList;;
 
 public class MyAdjacency extends MyGraph {
     // implement
     private int[][] adjMatrix;
-    
+
     public MyAdjacency() {
         super();
         adjMatrix = new int[0][0];
+    }
+
+    public int getSizeOfMatrix() {
+        return this.adjMatrix.length;
+    }
+
+    public int[][] getAdjacencyMatrix() {
+        return this.adjMatrix;
     }
 
     public void implementAddEdge(int v, int w) {
@@ -24,7 +34,7 @@ public class MyAdjacency extends MyGraph {
             } else {
                 newAdjMatrix = new int[2 * numVertices][2 * numVertices];
             }
-            
+
             for (int i = 0; i < adjMatrix.length; i++) {
                 for (int j = 0; j < adjMatrix.length; j++) {
                     newAdjMatrix[i][j] = adjMatrix[i][j];
@@ -39,8 +49,44 @@ public class MyAdjacency extends MyGraph {
     }
 
     public List<Integer> getNeighbors(int v) {
-        return new ArrayList<>(1);
+        // return new ArrayList<>(1);
+        List<Integer> neighborList = new ArrayList<Integer>();
+        
+        List<Integer> inDegree = this.getInDegree(v);
+        List<Integer> outDegree = this.getOutDegree(v);
+        if (inDegree.size() != 0) {
+            neighborList.addAll(inDegree);
+        } 
+
+        if (outDegree.size() != 0) {
+            neighborList.addAll(outDegree);
+        }
+
+        return neighborList;
     };
+
+    public List<Integer> getInDegree(int v) {
+        // count in degree
+        List<Integer> inDegree = new ArrayList<Integer>();
+        for (int i = 0; i < adjMatrix.length; i++) {
+            if (adjMatrix[i][v] == 1) {
+                inDegree.add(adjMatrix[i][v]);
+            }
+        }
+        return inDegree;
+    }
+
+    public List<Integer> getOutDegree(int v) {
+        // count out degree
+        List<Integer> outDegree = new ArrayList<Integer>();
+
+        for (int i = 0; i < adjMatrix.length; i++) {
+            if (adjMatrix[v][i] == 1) {
+                outDegree.add(adjMatrix[v][i]);
+            }
+        }
+        return outDegree;
+    }
 
     public void printGraph() {
         int numVertices = this.getNumVertices();
