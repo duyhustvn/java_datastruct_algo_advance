@@ -32,4 +32,6 @@ public abstract class MyGraph {
     public abstract void implementAddEdge(int f, int t);
     public abstract List<Integer> getNeighbors(int v);
     public abstract void printGraph();
+    public abstract List<Integer> getInDegree(int v);
+    public abstract List<Integer> getOutDegree(int v);
 }

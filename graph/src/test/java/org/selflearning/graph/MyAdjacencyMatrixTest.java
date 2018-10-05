@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MyAdjacencyTest {
-    MyAdjacency adjacencyGraph;
+public class MyAdjacencyMatrixTest {
+    MyAdjacencyMatrix adjacencyGraph;
     @Before
     public void setUp() throws Exception {
-        adjacencyGraph = new MyAdjacency();
+        adjacencyGraph = new MyAdjacencyMatrix();
         for (int i = 0; i < 6; i++) {
             adjacencyGraph.addVertex();
         }

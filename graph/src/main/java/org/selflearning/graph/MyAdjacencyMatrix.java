@@ -3,11 +3,11 @@ package org.selflearning.graph;
 import java.util.List;
 import java.util.ArrayList;;
 
-public class MyAdjacency extends MyGraph {
+public class MyAdjacencyMatrix extends MyGraph {
     // implement
     private int[][] adjMatrix;
 
-    public MyAdjacency() {
+    public MyAdjacencyMatrix() {
         super();
         adjMatrix = new int[0][0];
     }
@@ -21,6 +21,9 @@ public class MyAdjacency extends MyGraph {
     }
 
     public void implementAddEdge(int v, int w) {
+        if (v > this.getNumVertices() - 1 || w > this.getNumVertices() - 1) {
+            throw new IndexOutOfBoundsException("Index out of bound");
+        }
         adjMatrix[v][w] = 1;
     }
 
