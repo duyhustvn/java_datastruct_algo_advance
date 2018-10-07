@@ -22,14 +22,18 @@ public class App
         myGraph.addEdge(0, 4);
         myGraph.addEdge(2, 4);
         myGraph.addEdge(2, 3);
+        // myGraph.addEdge(2, 3);
         myGraph.printGraph();
 
 
-        System.out.println("Indegree");
+        System.out.println("Indegree of 3");
         System.out.println( myGraph.getInDegree(3));
 
-        System.out.println("Outdegree");
+        System.out.println("Outdegree of 2");
         System.out.println( myGraph.getOutDegree(2));
+
+        System.out.println("2 hops from 0");
+        System.out.println( myGraph.getDistance2(0));
         System.out.println( "Hello World!" );
     }
 }

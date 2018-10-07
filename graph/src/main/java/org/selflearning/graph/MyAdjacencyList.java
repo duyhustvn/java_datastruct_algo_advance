@@ -58,6 +58,23 @@ public class MyAdjacencyList extends MyGraph {
         return outDegreeList;
     }
 
+    public List<Integer> getDistance2(int v) {
+        List<Integer> twoHopsList = new ArrayList<Integer>();
+
+        List<Integer> oneHopsList = this.getOutDegree(v);
+        List<Integer> tmpList = new ArrayList<Integer>();
+        for (Integer outDegree : oneHopsList) {
+            tmpList = this.getOutDegree(outDegree);
+            for (Integer a : tmpList) {
+                if (twoHopsList.indexOf(a) == -1) {
+                    twoHopsList.add(a);
+                }
+            }
+        }
+
+        return twoHopsList;
+    }
+
     public void printGraph() {
         for (int i = 0; i < adjacencyList.size(); i++) {
             System.out.println(i + "-> {" + adjacencyList.get(i) + "}");

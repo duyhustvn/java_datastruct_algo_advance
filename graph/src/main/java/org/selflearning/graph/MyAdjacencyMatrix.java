@@ -54,12 +54,12 @@ public class MyAdjacencyMatrix extends MyGraph {
     public List<Integer> getNeighbors(int v) {
         // return new ArrayList<>(1);
         List<Integer> neighborList = new ArrayList<Integer>();
-        
+
         List<Integer> inDegree = this.getInDegree(v);
         List<Integer> outDegree = this.getOutDegree(v);
         if (inDegree.size() != 0) {
             neighborList.addAll(inDegree);
-        } 
+        }
 
         if (outDegree.size() != 0) {
             neighborList.addAll(outDegree);
@@ -73,7 +73,7 @@ public class MyAdjacencyMatrix extends MyGraph {
         List<Integer> inDegree = new ArrayList<Integer>();
         for (int i = 0; i < adjMatrix.length; i++) {
             if (adjMatrix[i][v] == 1) {
-                inDegree.add(adjMatrix[i][v]);
+                inDegree.add(i);
             }
         }
         return inDegree;
@@ -85,10 +85,27 @@ public class MyAdjacencyMatrix extends MyGraph {
 
         for (int i = 0; i < adjMatrix.length; i++) {
             if (adjMatrix[v][i] == 1) {
-                outDegree.add(adjMatrix[v][i]);
+                outDegree.add(i);
             }
         }
         return outDegree;
+    }
+
+    public List<Integer> getDistance2(int v) {
+        List<Integer> twoHopsList = new ArrayList<Integer>();
+
+        List<Integer> oneHopsList = this.getOutDegree(v);
+        List<Integer> tmpList = new ArrayList<Integer>();
+        for (Integer outDegree : oneHopsList) {
+            tmpList = this.getOutDegree(outDegree);
+            for (Integer a : tmpList) {
+                if (twoHopsList.indexOf(a) == -1) {
+                    twoHopsList.add(a);
+                }
+            }
+        }
+
+        return twoHopsList;
     }
 
     public void printGraph() {

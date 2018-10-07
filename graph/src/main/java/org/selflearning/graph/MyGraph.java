@@ -34,4 +34,5 @@ public abstract class MyGraph {
     public abstract void printGraph();
     public abstract List<Integer> getInDegree(int v);
     public abstract List<Integer> getOutDegree(int v);
+    public abstract List<Integer> getDistance2(int v);
 }
