@@ -32,7 +32,19 @@ public class MyAdjacencyList extends MyGraph {
     }
 
     public List<Integer> getNeighbors(int v) {
-        return new ArrayList<Integer>(1);
+        List<Integer> neighborList = new ArrayList<Integer>();
+
+        List<Integer> inDegree = this.getInDegree(v);
+        List<Integer> outDegree = this.getOutDegree(v);
+        if (inDegree.size() != 0) {
+            neighborList.addAll(inDegree);
+        }
+
+        if (outDegree.size() != 0) {
+            neighborList.addAll(outDegree);
+        }
+
+        return neighborList;
     }
 
     public List<Integer> getInDegree(int v) {
@@ -53,7 +65,9 @@ public class MyAdjacencyList extends MyGraph {
             throw new IndexOutOfBoundsException("Index out of bound");
         }
 
-        List<Integer> outDegreeList = adjacencyList.get(v);
+        // List<Integer> outDegreeList = adjacencyList.get(v);
+        List<Integer> outDegreeList = new ArrayList<Integer>(adjacencyList.get(v));
+
 
         return outDegreeList;
     }
