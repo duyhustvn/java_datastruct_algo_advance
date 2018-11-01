@@ -56,11 +56,13 @@ public abstract class MyGraph {
             }
             List<Integer> neighbors = this.getOutDegree(current);
             for (Integer neighbor: neighbors) {
+                if (visited.contains(neighbor)) continue;
                 visited.add(neighbor);
                 parent.put(current, neighbor);
                 nextNode.add(neighbor);
             }
         }
+        return parent;
     }   
 
     public abstract void implementAddVertex();
