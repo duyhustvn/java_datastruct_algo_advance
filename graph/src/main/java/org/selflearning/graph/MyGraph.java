@@ -31,7 +31,7 @@ public abstract class MyGraph {
     /* Algorithm
     Next node: Queue
     Visited set: HashSet
-    parent: HashMap
+    path: HashMap
 
     Add start to Queue and visited set
     while Queue is not empty 
@@ -42,28 +42,46 @@ public abstract class MyGraph {
             add current node as n's parent in parent map
             enqueue n to queue
     */
-    public HashMap<Integer, Integer> BFS( int start, int end) {
+    public List<Integer> BFS( int start, int end) {
         Queue<Integer> nextNode = new LinkedList<Integer>();
         HashSet<Integer> visited = new HashSet<Integer>();
-        HashMap<Integer, Integer> parent = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> path = new HashMap<Integer, Integer>();
+        boolean isFound = false;
         nextNode.add(start);
         visited.add(start);
         Integer current;
         while (nextNode.size() != 0) {
             current = nextNode.remove();
             if (current == end) {
-                return parent;
+                isFound = true;
+                break;
             }
             List<Integer> neighbors = this.getOutDegree(current);
             for (Integer neighbor: neighbors) {
                 if (visited.contains(neighbor)) continue;
                 visited.add(neighbor);
-                parent.put(current, neighbor);
+                path.put(neighbor, current);
                 nextNode.add(neighbor);
             }
         }
-        return parent;
-    }   
+        if (isFound) {
+            return this.buildPath(start, end, path);
+        } else {
+            return new ArrayList<Integer>();
+        }
+    }
+
+    public List<Integer> buildPath(Integer start, Integer goal, HashMap<Integer, Integer> path) {
+        List<Integer> buildPath = new ArrayList<Integer>();
+        buildPath.add(goal);
+        Integer currNode = path.get(goal);
+        buildPath.add(currNode);
+        while (currNode != start) {
+            currNode = path.get(currNode);
+            buildPath.add(currNode);
+        }
+        return buildPath;
+    }
 
     public abstract void implementAddVertex();
     public abstract void implementAddEdge(int f, int t);

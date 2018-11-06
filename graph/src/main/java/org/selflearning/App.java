@@ -4,6 +4,8 @@ import org.selflearning.graph.MyGraph;
 import org.selflearning.graph.MyAdjacencyMatrix;
 import org.selflearning.graph.MyAdjacencyList;
 
+import java.util.*;
+
 /**
  * Hello world!
  *
@@ -22,9 +24,17 @@ public class App
         myGraph.addEdge(0, 4);
         myGraph.addEdge(2, 4);
         myGraph.addEdge(2, 3);
-        // myGraph.addEdge(2, 3);
+        myGraph.addEdge(3, 5);
+        myGraph.addEdge(4, 5);
         myGraph.printGraph();
 
+        System.out.println("Path");
+        List<Integer> path = myGraph.BFS(0, 5);
+
+        for (Integer node: path) {
+            System.out.print(node + " ");
+        }
+        System.out.println();
 
         System.out.println("Indegree of 3");
         System.out.println( myGraph.getInDegree(3));
